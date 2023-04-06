@@ -26,6 +26,21 @@ class Transmitter:
                  return
             self.codePacket()
             print(self.tabOfBits)      
+    
+    #Funkcja rozpoczynająca transimsję
+    def beginTransmission(self):
+        self.send(True)
+    
+    #Funkcja wysyłająca bity do kanału tramsitującego
+    def send(self, correctTransmission):
+        if(self.reachedEndOfFile):
+            return
+
+        if(correctTransmission):
+            self.loadBites()
+            self.codePacket()
+
+        self.transmissionChannel.recieve(self.bitsStream) #WZYWANA FUNKCJA KANAŁU!
 
     #Ładuje nową porcję bitów do tablicy
     def loadBites(self):
@@ -38,21 +53,6 @@ class Transmitter:
                 self.reachedEndOfFile = True    
                 return   
 
-    #Funkcja wysyłająca bity do kanału tramsitującego
-    def send(self, correctTransmission):
-        if(self.reachedEndOfFile):
-            return
-
-        if(correctTransmission):
-            self.loadBites()
-            self.codePacket()
-
-        self.transmissionChannel.recieve(self.bitsStream)
-
-    #Funkcja rozpoczynająca transimsję
-    def beginTransmission(self):
-        self.send(True)
-
     #Funkcja wzywana wewnętrznie aby zakodować bit parzystości
     def codePacket(self):
         EvenOnes = True
@@ -64,3 +64,11 @@ class Transmitter:
             self.tabOfBits.insert(len(self.tabOfBits), 0)
         else:
             self.tabOfBits.insert(len(self.tabOfBits), 1)        
+
+
+def main():
+    transmitter = Transmitter(20)
+    transmitter.connectToInputFile('input-files/input.txt')
+    transmitter.printBites()
+
+main()
