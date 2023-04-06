@@ -14,7 +14,6 @@ class Transmitter:
         self.reachedEndOfFile = False
         self.bitsStream = ConstBitStream(filename = filePath)
     
-
     #Podłącza do kanału
     def connectToChannel(self, channel):
         self.transmissionChannel = channel
@@ -39,8 +38,7 @@ class Transmitter:
                 self.reachedEndOfFile = True    
                 return   
 
-
-    #Funkcja wysyłająca bity
+    #Funkcja wysyłająca bity do kanału tramsitującego
     def send(self, correctTransmission):
         if(self.reachedEndOfFile):
             return
@@ -51,7 +49,7 @@ class Transmitter:
 
         self.transmissionChannel.recieve(self.bitsStream)
 
-
+    #Funkcja rozpoczynająca transimsję
     def beginTransmission(self):
         self.send(True)
 
