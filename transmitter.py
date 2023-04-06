@@ -42,6 +42,9 @@ class Transmitter:
 
     #Funkcja wysyłająca bity
     def send(self, correctTransmission):
+        if(self.reachedEndOfFile):
+            return
+
         if(correctTransmission):
             self.loadBites()
             self.codePacket()
@@ -63,10 +66,3 @@ class Transmitter:
             self.tabOfBits.insert(len(self.tabOfBits), 0)
         else:
             self.tabOfBits.insert(len(self.tabOfBits), 1)        
-
-def main():
-    transmitter = Transmitter(4)
-    transmitter.connectToInputFile('input-files/input.txt')
-    transmitter.printBites()
-
-main()
