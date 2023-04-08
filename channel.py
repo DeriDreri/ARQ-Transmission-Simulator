@@ -1,7 +1,10 @@
+
 import bitstring
 
+import transmitter
+
 # Prawdopodobieństwo wystąpienia błędu
-error_Rate = 0, 5
+error_Rate = 0.5
 
 # Początkowy stan generatora (ziarno)
 seed = 42
@@ -15,9 +18,19 @@ class Channel:
         self.receiver = receiver
 
     # Generator liczb pseudolosowych
-    def random(seed, a=1103515245, c=12345, m=2 ** 31 - 1):
+    def random(self, seed, a=1103515245, c=12345, m=2 ** 31 - 1):
         while True:
             seed = (a * seed + c) % m
-            yield seed / m  #Normalizacja do przedziału [0,1)
+            yield seed / m  # Normalizacja do przedziału [0,1)
 
-    generator = random(seed)
+
+    # Nakładanie zakłóceń
+    def addNoise(self):
+        noisy_bits = []
+        for bit in self.bits:
+            if next(self.random(seed)) < error_Rate:
+                noisy_bits.append(int(not bit))
+            else:
+                noisy_bits.append(bit)
+
+        return noisy_bits
