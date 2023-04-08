@@ -3,7 +3,7 @@ import bitstring
 # Prawdopodobieństwo wystąpienia błędu
 error_Rate = 0, 5
 
-# Ziarno generatora liczb pseudolosowych
+# Początkowy stan generatora (ziarno)
 seed = 42
 
 
@@ -18,7 +18,6 @@ class Channel:
     def random(seed, a=1103515245, c=12345, m=2 ** 31 - 1):
         while True:
             seed = (a * seed + c) % m
-            yield seed
+            yield seed / m  #Normalizacja do przedziału [0,1)
 
     generator = random(seed)
-
