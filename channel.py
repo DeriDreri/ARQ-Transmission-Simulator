@@ -1,4 +1,3 @@
-
 import bitstring
 
 import transmitter
@@ -14,6 +13,7 @@ class Channel:
 
     # Konstruktor definiuje nadajnik i odbiornik
     def __init__(self, transmitter, receiver):
+        self.bits = []
         self.transmitter = transmitter
         self.receiver = receiver
 
@@ -23,6 +23,9 @@ class Channel:
             seed = (a * seed + c) % m
             yield seed / m  # Normalizacja do przedziału [0,1)
 
+    # Odbieranie ciągu bitów z nadajnika
+    def receive(self, bitsStream):
+        self.bits = bitsStream
 
     # Nakładanie zakłóceń
     def addNoise(self):
