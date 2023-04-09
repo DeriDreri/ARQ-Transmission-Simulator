@@ -3,7 +3,7 @@ import channel
 import receiver
 
 # Rozmiar przesyłanych pakietów
-size = 5
+size = 10
 
 # Ścieżka do pliku z przesyłanym sygnałem
 filePath = 'input-files/input.txt'
@@ -16,16 +16,9 @@ chnl = channel.Channel(trns, rcvr)
 
 # ARQ stop and wait
 def main():
-    # Konfiguracja nadajnika
-    tab = [0, 0, 0, 1, 1, 1]
-    print("Nadawany ciąg bitów:")
-    print(tab)
-
-    if chnl.receive(tab):
-        print("Informacja dostarczona!")
-    else:
-        print("NIE dostarczono")
-    # Konfiguracja kanału
+    trns.connectToInputFile('input-files/input.txt')  # Wczytanie pliku .txt do nadajnika
+    trns.connectToChannel(chnl)  # Podłączenie nadajnika do kanału
+    trns.beginTransmission()  # Rozpoczęcie transmisji
 
 
 # Start ARQ
