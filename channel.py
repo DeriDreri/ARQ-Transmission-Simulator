@@ -1,7 +1,7 @@
 import time
 
 # Prawdopodobieństwo wystąpienia błędu
-error_Rate = 0.5
+error_Rate = 0.25  # 25%
 
 
 class Channel:
@@ -27,13 +27,13 @@ class Channel:
 
     # Odbieranie ciągu bitów z nadajnika, wysyłanie go do odbiornika
     def receive(self, bitsStream):
-        self.bits = bitsStream  # Odbieranie ciągu bitów z nadajnika
-        print("Ciąg bitów jest w kanale:")
-        print(self.bits)
         print("=========================\n")
+        self.bits = bitsStream  # Odbieranie ciągu bitów z nadajnika
+        print("\nCiąg bitów jest w kanale:")
+        print(self.bits)
 
         self.bits = self.addNoise()  # Nakładanie zakłóceń na ciąg bitów
-        print("Nałożono zakłócenia na ciąg bitów")
+        print("\nNałożono zakłócenia na ciąg bitów:")
         print(self.bits)
         print("=========================\n")
 

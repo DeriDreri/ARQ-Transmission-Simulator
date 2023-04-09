@@ -16,6 +16,7 @@ class Receiver:
     def receive(self, bitsStream):
         self.tabOfBits = bitsStream
         if self.checkBits(): # Sprawdzanie parzystości bitów
+            self.tabOfBits.append(bitsStream)
             return True
         return False
 
@@ -31,3 +32,4 @@ class Receiver:
             return True
 
         return False
+

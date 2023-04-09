@@ -44,17 +44,20 @@ class Transmitter:
 
     # Funkcja wysyłająca bity
     def send(self, correctTransmission):
-        #if self.reachedEndOfFile:
-         #   return
+        while not self.reachedEndOfFile:
 
-        if correctTransmission:
-            self.loadBites()
-            self.codePacket()
+            if correctTransmission:
+                self.loadBites()
+                self.codePacket()
 
-        if self.transmissionChannel.receive(self.bitsStream):
-            print("Ciąg bitów jest parzysty")
-        else:
-            print("Ciąg bitów nie jest parzysty")
+            if self.transmissionChannel.receive(self.tabOfBits):
+                print("Informacja potwierdzona")
+                print()
+                correctTransmission = True
+            else:
+                print("Informacja niepotwierdzona")
+                print()
+                correctTransmission = False
 
     def beginTransmission(self):
         self.send(True)
