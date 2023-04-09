@@ -3,9 +3,6 @@ import time
 # Prawdopodobieństwo wystąpienia błędu
 error_Rate = 0.5
 
-# Początkowy stan generatora (ziarno)
-seed = 42
-
 
 class Channel:
 
@@ -18,7 +15,8 @@ class Channel:
 
     # Generator liczb pseudolosowych
 
-    def random(self):
+    @staticmethod
+    def random():
         seed = int(round(time.time() * 1000))
         a = 1103515245
         c = 12345
