@@ -1,11 +1,13 @@
+from bitstring import ConstBitStream
+
+
 class Receiver:
 
     # Konstruktor klasy
     def __init__(self):
         self.channel = None
         self.tabOfBits = []
-        self.file = open("wyniki.txt", "w")         #tworzy pusty plik tekstowy do wynikow
-        self.file.close()
+        self.finalTab = []
 
     # Dodawanie kanału do odbiornika
     def addChannel(self, channel):
@@ -14,9 +16,11 @@ class Receiver:
     # Odbieranie ciągu bitów z kanału
     def receive(self, bitsStream):
         self.tabOfBits = bitsStream
-        if self.checkBits(): # Sprawdzanie parzystości bitów
-            self.saveToFile()
-            self.tabOfBits.append(bitsStream)
+        if self.checkBits():  # Sprawdzanie parzystości bitów
+            #self.tabOfBits.append(bitsStream)
+            for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na podstawie ktorej odtworzy sie wiadomosc
+                self.finalTab.append(self.tabOfBits[i])
+            #self.saveToFile()
             return True
         return False
 
@@ -32,11 +36,11 @@ class Receiver:
             return True
 
         return False
-    #wpisywanie do pliku
+
+    # wpisywanie do pliku
     def saveToFile(self):
-        self.file = open("wyniki.txt", "a")
-        for bit in self.tabOfBits[:-1]:         #nawias kwadratowy sprawia, ze wpisuje sie bez bitu parzystości
-            self.file.write(str(bit))
-            self.file.write(",")        #wpisuje przecinek po kazdej liczbie, trzeba ustalic czy z czy bez nich
-        self.file.write("\n")
+        self.file = open("results.txt", "wb")               # tworzy pusty plik tekstowy do wynikow
+        finalBitStream = ConstBitStream(self.finalTab)
+        finalBitStream.tofile(self.file)                    # zapis typu ConstBitStream do pliku
+        print(self.finalTab)                                # tymczasowa funkcja printujaca tablice
         self.file.close()
