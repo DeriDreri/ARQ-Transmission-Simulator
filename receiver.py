@@ -17,10 +17,8 @@ class Receiver:
     def receive(self, bitsStream):
         self.tabOfBits = bitsStream
         if self.checkBits():  # Sprawdzanie parzystości bitów
-            #self.tabOfBits.append(bitsStream)
             for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na podstawie ktorej odtworzy sie wiadomosc
                 self.finalTab.append(self.tabOfBits[i])
-            #self.saveToFile()
             return True
         return False
 

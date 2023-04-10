@@ -1,7 +1,7 @@
 import time
 
 # Prawdopodobieństwo wystąpienia błędu
-error_Rate = 0.25  # 25%
+error_Rate = 0.001  # 25%
 
 
 class Channel:
