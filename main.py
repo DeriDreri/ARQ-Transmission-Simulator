@@ -7,7 +7,7 @@ size = 200
 
 # Ścieżka do pliku z przesyłanym sygnałem
 fileIn = 'input-files/input.txt'
-''
+
 # ARQ stop and wait
 def main():
     # Stworzenie nadajnika, odbiornika, kanału
@@ -20,4 +20,5 @@ def main():
     rcvr.saveToFile()           # zapisanie wynikow do pliku txt
 
 # Start ARQ
-main()
+if __name__ == "__main__":
+    main()
