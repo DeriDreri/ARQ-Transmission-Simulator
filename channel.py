@@ -1,7 +1,7 @@
 import time
 
 # Prawdopodobieństwo wystąpienia błędu
-error_Rate = 0.001  # 25%
+error_Rate = 0.001
 
 
 class Channel:
@@ -17,12 +17,12 @@ class Channel:
 
     @staticmethod
     def random():
-        seed = int(round(time.time() * 1000))
+        seed = int(round(time.time() * 1000000000))
         a = 1103515245
         c = 12345
         m = 2 ** 31
         seed = (a * seed + c) % m
-        time.sleep(0.1)
+        time.sleep(0.0000001)
         return seed / m
 
     # Odbieranie ciągu bitów z nadajnika, wysyłanie go do odbiornika
@@ -40,7 +40,11 @@ class Channel:
 
     # Nakładanie zakłóceń
     def addNoise(self, bits):
+        noisy_bits = []
         for bit in bits:
             if self.random() < error_Rate:
-                bit = not bit
-        return bits
+                noisy_bits.append(int(not bit))
+            else:
+                noisy_bits.append(bit)
+
+        return noisy_bits

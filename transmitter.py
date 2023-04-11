@@ -43,7 +43,7 @@ class Transmitter:
 
     # Funkcja wysyłająca bity
     def send(self, correctTransmission):
-        while not self.reachedEndOfFile:
+        while not self.reachedEndOfFile or not correctTransmission :
 
             if correctTransmission:
                 self.loadBites()

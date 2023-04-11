@@ -3,13 +3,11 @@ from bitstring import ConstBitStream
 
 class Receiver:
 
-
-
     # Konstruktor klasy
     def __init__(self):
         self.tabOfBits = []
         self.finalTab = []
-        self.fileName = 'output-files/output2.txt'
+        self.fileName = 'output-files/output.txt'
 
     # Dodawanie kanału do odbiornika
     def addChannel(self, channel):
@@ -36,7 +34,7 @@ class Receiver:
 
         return evenOnes
 
-    def setFileName(self, fileName):
+    def setNewOutput(self, fileName):
         self.fileName = fileName
 
     # wpisywanie do pliku
@@ -44,4 +42,5 @@ class Receiver:
         file = open(self.fileName, "wb")               # tworzy pusty plik tekstowy do wynikow
         finalBitStream = ConstBitStream(self.finalTab)
         finalBitStream.tofile(file)                    # zapis typu ConstBitStream do pliku
+        self.finalTab = []                             # czyści tablicę po zapisie danych
         file.close()

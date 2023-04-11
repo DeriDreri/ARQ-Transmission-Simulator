@@ -3,12 +3,10 @@ import channel
 import receiver
 
 # Rozmiar przesyłanych pakietów
-size = 100
+size = 200
 
 # Ścieżka do pliku z przesyłanym sygnałem
-filePath = 'input-files/input.txt'
-
-
+fileIn = 'input-files/input.txt'
 ''
 # ARQ stop and wait
 def main():
@@ -17,7 +15,7 @@ def main():
     rcvr = receiver.Receiver()
     chnl = channel.Channel(trns, rcvr)
 
-    trns.connectToInputFile('input-files/input.txt')  # Wczytanie pliku .txt do nadajnika
+    trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
     trns.beginTransmission()  # Rozpoczęcie transmisji
     rcvr.saveToFile()           # zapisanie wynikow do pliku txt
 
