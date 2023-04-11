@@ -37,7 +37,6 @@ class Transmitter:
             try:
                 value = self.bitsStream.read(1).uint
                 self.tabOfBits.insert(i, value)
-                print(self.tabOfBits)
             except ReadError:  # Spodziewa się końca pliku
                 self.reachedEndOfFile = True
                 return
@@ -65,15 +64,11 @@ class Transmitter:
     # Funkcja wzywana wewnętrznie aby zakodować bit parzystości
     def codePacket(self):
         EvenOnes = True
-        for i in range(0, len(self.tabOfBits)):
-            if (self.tabOfBits[i] == 1):
+        for i in self.tabOfBits:
+            if i == 1:
                 EvenOnes = not EvenOnes
 
         if (EvenOnes):
             self.tabOfBits.insert(len(self.tabOfBits), 0)
         else:
-<<<<<<< HEAD
             self.tabOfBits.insert(len(self.tabOfBits), 1)
-=======
-            self.tabOfBits.insert(len(self.tabOfBits), 1)
->>>>>>> origin/receiver

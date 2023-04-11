@@ -3,11 +3,13 @@ from bitstring import ConstBitStream
 
 class Receiver:
 
+
+
     # Konstruktor klasy
     def __init__(self):
-        self.channel = None
         self.tabOfBits = []
         self.finalTab = []
+        self.fileName = 'output-files/output2.txt'
 
     # Dodawanie kanału do odbiornika
     def addChannel(self, channel):
@@ -17,28 +19,29 @@ class Receiver:
     def receive(self, bitsStream):
         self.tabOfBits = bitsStream
         if self.checkBits():  # Sprawdzanie parzystości bitów
-            for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na podstawie ktorej odtworzy sie wiadomosc
-                self.finalTab.append(self.tabOfBits[i])
+        #    for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na podstawie ktorej odtworzy sie wiadomosc
+        #        self.finalTab.append(self.tabOfBits[i])
+            bitsStream.pop()
+            self.finalTab = self.finalTab + bitsStream
             return True
         return False
 
     # Sprawdzanie parzystości ciągu bitów
     def checkBits(self):
-        one = 0
+        evenOnes = True
 
-        for i in range(len(self.tabOfBits)):
-            if self.tabOfBits[i] == 1:
-                one = one + 1
+        for i in self.tabOfBits:
+            if i == 1:
+                evenOnes = not evenOnes
 
-        if one % 2 == 0:  # Jeśli ilość '1' w ciągu jest parzysta to zwraca True
-            return True
+        return evenOnes
 
-        return False
+    def setFileName(self, fileName):
+        self.fileName = fileName
 
     # wpisywanie do pliku
     def saveToFile(self):
-        self.file = open("results.txt", "wb")               # tworzy pusty plik tekstowy do wynikow
+        file = open(self.fileName, "wb")               # tworzy pusty plik tekstowy do wynikow
         finalBitStream = ConstBitStream(self.finalTab)
-        finalBitStream.tofile(self.file)                    # zapis typu ConstBitStream do pliku
-        print(self.finalTab)                                # tymczasowa funkcja printujaca tablice
-        self.file.close()
+        finalBitStream.tofile(file)                    # zapis typu ConstBitStream do pliku
+        file.close()
