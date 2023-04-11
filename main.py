@@ -19,7 +19,11 @@ def main():
     trns.connectToInputFile('input-files/input.txt')  # Wczytanie pliku .txt do nadajnika
     trns.connectToChannel(chnl)  # Podłączenie nadajnika do kanału
     trns.beginTransmission()  # Rozpoczęcie transmisji
+<<<<<<< HEAD
 
+=======
+    rcvr.saveToFile()           # zapisanie wynikow do pliku txt
+>>>>>>> origin/receiver
 
 # Start ARQ
 main()

@@ -72,4 +72,8 @@ class Transmitter:
         if (EvenOnes):
             self.tabOfBits.insert(len(self.tabOfBits), 0)
         else:
+<<<<<<< HEAD
             self.tabOfBits.insert(len(self.tabOfBits), 1)
+=======
+            self.tabOfBits.insert(len(self.tabOfBits), 1)
+>>>>>>> origin/receiver
