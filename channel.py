@@ -1,11 +1,7 @@
 import time
 
 # Prawdopodobieństwo wystąpienia błędu
-<<<<<<< HEAD
-error_Rate = 0.25  # 25%
-=======
 error_Rate = 0.001  # 25%
->>>>>>> origin/receiver
 
 
 class Channel:
@@ -52,8 +48,4 @@ class Channel:
             else:
                 noisy_bits.append(bit)
 
-<<<<<<< HEAD
         return noisy_bits
-=======
-        return noisy_bits
->>>>>>> origin/receiver
