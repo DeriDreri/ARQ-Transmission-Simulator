@@ -14,6 +14,7 @@ def main():
     trns = transmitter.Transmitter(size)
     rcvr = receiver.Receiver()
     chnl = channel.Channel(trns, rcvr)
+a
 
     trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
     trns.beginTransmission()  # Rozpoczęcie transmisji
