@@ -8,6 +8,9 @@ size = 200
 # Ścieżka do pliku z przesyłanym sygnałem
 fileIn = 'input-files/input.txt'
 
+# Ścieżka do pliku z testami
+fileTest = 'output-files/test.txt'
+
 # Ilość pomiarów
 n = 5
 
@@ -18,8 +21,9 @@ def main():
     trns = transmitter.Transmitter(size)
     rcvr = receiver.Receiver()
     chnl = channel.Channel(trns, rcvr)
-    sent_packages = []
-    accepted_packages = []
+
+    file = open(fileTest, "a")
+    file.write("L.p |  Sent  |  Accepted  |  Bit comparsion: input/output  |\n")
 
     print("Rozpoczęcie testowania:")
 
@@ -27,15 +31,18 @@ def main():
         trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
         trns.beginTransmission()  # Rozpoczęcie transmisji
 
-        sent_packages.append(trns.sent)
-        accepted_packages.append(rcvr.accepted)
+        file.write(
+            str(i) + "  |  " + str(trns.sent) + "  |  " + str(rcvr.accepted) + "  |  " + str(rcvr.compare(trns.tabOfBits)) + "\n")
+
         print(i, "/", n, " [Sent:", trns.sent, "] [Accepted: ", rcvr.accepted, "] [Bit comparsion: ",
               rcvr.compare(trns.tabOfBits), "]")
 
-        rcvr.saveToFile()  # zapisanie wynikow do pliku txt
+        # rcvr.saveToFile()  # zapisanie wynikow do pliku txt
 
         trns.clear()
         rcvr.clear()
+
+    file.close()
 
     print("Zakończenie testowania.")
 

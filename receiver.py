@@ -55,8 +55,10 @@ class Receiver:
             if self.finalTab[bit] == start_bits[bit]:
                 counter = counter + 1
 
-        return counter, "/", len(self.finalTab)
+        return str(counter) + "/" + str(len(self.finalTab))
 
     # Zerowanie ilości zaakceptowanych pakietów po zakończonej transmisji
     def clear(self):
         self.accepted = 0
+        self.finalTab = []
+

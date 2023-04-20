@@ -74,3 +74,4 @@ class Transmitter:
     # Zerowanie ilości wysłanych pakietów po zakończonej transmisji
     def clear(self):
         self.sent = 0
+        self.tabOfBits = []
