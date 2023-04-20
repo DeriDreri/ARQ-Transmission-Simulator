@@ -8,6 +8,7 @@ class Receiver:
         self.tabOfBits = []
         self.finalTab = []
         self.fileName = 'output-files/output.txt'
+        self.accepted = 0
 
     # Dodawanie kanału do odbiornika
     def addChannel(self, channel):
@@ -17,10 +18,11 @@ class Receiver:
     def receive(self, bitsStream):
         self.tabOfBits = bitsStream
         if self.checkBits():  # Sprawdzanie parzystości bitów
-        #    for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na podstawie ktorej odtworzy sie wiadomosc
-        #        self.finalTab.append(self.tabOfBits[i])
+            # for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na
+            # podstawie ktorej odtworzy sie wiadomosc self.finalTab.append(self.tabOfBits[i])
             bitsStream.pop()
             self.finalTab = self.finalTab + bitsStream
+            self.accepted = self.accepted + 1
             return True
         return False
 
@@ -39,8 +41,22 @@ class Receiver:
 
     # wpisywanie do pliku
     def saveToFile(self):
-        file = open(self.fileName, "wb")               # tworzy pusty plik tekstowy do wynikow
+        file = open(self.fileName, "wb")  # tworzy pusty plik tekstowy do wynikow
         finalBitStream = ConstBitStream(self.finalTab)
-        finalBitStream.tofile(file)                    # zapis typu ConstBitStream do pliku
-        self.finalTab = []                             # czyści tablicę po zapisie danych
+        finalBitStream.tofile(file)  # zapis typu ConstBitStream do pliku
+        self.finalTab = []  # czyści tablicę po zapisie danych
         file.close()
+
+    # Porównywanie input z output
+    def compare(self, start_bits):
+        counter = 0  # Zmienna do zliczania ilości poprawnych bitów
+
+        for bit in self.finalTab:
+            if self.finalTab[bit] == start_bits[bit]:
+                counter = counter + 1
+
+        return counter, "/", len(self.finalTab)
+
+    # Zerowanie ilości zaakceptowanych pakietów po zakończonej transmisji
+    def clear(self):
+        self.accepted = 0

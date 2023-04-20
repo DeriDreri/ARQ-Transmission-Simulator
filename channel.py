@@ -27,14 +27,8 @@ class Channel:
 
     # Odbieranie ciągu bitów z nadajnika, wysyłanie go do odbiornika
     def receive(self, bitsStream):
-        print("=========================\n")
-        print("\nCiąg bitów jest w kanale:")
-        print(bitsStream)
 
         bitsStream = self.addNoise(bitsStream)  # Nakładanie zakłóceń na ciąg bitów
-        print("\nNałożono zakłócenia na ciąg bitów:")
-        print(bitsStream)
-        print("=========================\n")
 
         return self.receiver.receive(bitsStream)  # Wysyłanie ciągu bitów do odbiornika i odbieranie potwierdzenia
 

@@ -4,10 +4,11 @@ from bitstring import ReadError
 
 class Transmitter:
 
-    # Konstruktor definiuje długość pakietów i nadmiarowość
+    # Konstruktor definiuje długość pakietów, nadmiarowość oraz liczbę wysłanych pakietów
     def __init__(self, packetLength):
         self.packetLength = packetLength
         self.tabOfBits = []
+        self.sent = 0
 
     # Łaczy z plikiem odczytywanym
     def connectToInputFile(self, filePath):
@@ -18,7 +19,6 @@ class Transmitter:
     # Podłącza do kanału
     def connectToChannel(self, channel):
         self.transmissionChannel = channel
-        print("Podłączono kanał")
 
     # Testowa funkcja do drukowania pakietów bitów
     def printBites(self):
@@ -43,20 +43,18 @@ class Transmitter:
 
     # Funkcja wysyłająca bity
     def send(self, correctTransmission):
-        while not self.reachedEndOfFile or not correctTransmission :
+        while not self.reachedEndOfFile or not correctTransmission:
 
             if correctTransmission:
                 self.loadBites()
                 self.codePacket()
 
             if self.transmissionChannel.receive(self.tabOfBits):
-                print("Informacja potwierdzona")
-                print()
                 correctTransmission = True
             else:
-                print("Informacja niepotwierdzona")
-                print()
                 correctTransmission = False
+
+            self.sent = self.sent + 1
 
     def beginTransmission(self):
         self.send(True)
@@ -72,3 +70,7 @@ class Transmitter:
             self.tabOfBits.insert(len(self.tabOfBits), 0)
         else:
             self.tabOfBits.insert(len(self.tabOfBits), 1)
+
+    # Zerowanie ilości wysłanych pakietów po zakończonej transmisji
+    def clear(self):
+        self.sent = 0
