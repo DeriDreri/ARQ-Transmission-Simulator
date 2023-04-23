@@ -8,6 +8,7 @@ class Transmitter:
     def __init__(self, packetLength):
         self.packetLength = packetLength
         self.tabOfBits = []
+        self.message = []
         self.sent = 0
 
     # Łaczy z plikiem odczytywanym
@@ -71,7 +72,10 @@ class Transmitter:
         else:
             self.tabOfBits.insert(len(self.tabOfBits), 1)
 
+        self.message = self.message + self.tabOfBits
+
     # Zerowanie ilości wysłanych pakietów po zakończonej transmisji
     def clear(self):
         self.sent = 0
         self.tabOfBits = []
+        self.message = []

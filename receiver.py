@@ -47,15 +47,16 @@ class Receiver:
         self.finalTab = []  # czyści tablicę po zapisie danych
         file.close()
 
-    # Porównywanie input z output
-    def compare(self, start_bits):
-        counter = 0  # Zmienna do zliczania ilości poprawnych bitów
 
-        for bit in self.finalTab:
-            if self.finalTab[bit] == start_bits[bit]:
+    # Porównywanie input z output
+    def compare(self, input_message):
+        counter = 0 # Zliczanie ilosci takich samych bitow
+
+        for i in range(0, len(self.finalTab)):
+            if self.finalTab[i] == input_message[i]:
                 counter = counter + 1
 
-        return str(counter) + "/" + str(len(self.finalTab))
+        return counter
 
     # Zerowanie ilości zaakceptowanych pakietów po zakończonej transmisji
     def clear(self):

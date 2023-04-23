@@ -1,13 +1,10 @@
 import time
 
-# Prawdopodobieństwo wystąpienia błędu
-error_Rate = 0.001
-
-
 class Channel:
 
     # Konstruktor definiuje nadajnik i odbiornik
     def __init__(self, transmitter, receiver):
+        self.error_Rate = 0
         self.transmitter = transmitter
         self.receiver = receiver
         transmitter.connectToChannel(self)
@@ -22,7 +19,7 @@ class Channel:
         c = 12345
         m = 2 ** 31
         seed = (a * seed + c) % m
-        time.sleep(0.0000001)
+        time.sleep(0.000001)
         return seed / m
 
     # Odbieranie ciągu bitów z nadajnika, wysyłanie go do odbiornika
@@ -36,9 +33,13 @@ class Channel:
     def addNoise(self, bits):
         noisy_bits = []
         for bit in bits:
-            if self.random() < error_Rate:
+            if self.random() < self.error_Rate:
                 noisy_bits.append(int(not bit))
             else:
                 noisy_bits.append(bit)
 
         return noisy_bits
+
+    # Ustawianie prawdopodobieństwa wystąpienia błędu
+    def set_error_rate(self, error):
+        self.error_Rate = error
