@@ -2,9 +2,12 @@ import transmitter
 import channel
 import receiver
 import  os
+from bitstring import ConstBitStream
+from bitstring import ReadError
+
 
 # Rozmiar przesyłanych pakietów
-size = 200
+size = 20
 
 # Ścieżka do pliku z przesyłanym sygnałem
 fileIn = 'input-files/input.txt'
@@ -38,6 +41,16 @@ def main():
     chnl = channel.Channel(trns, rcvr)
 
     file = open(fileTest, "a")
+    inputFileStream = ConstBitStream(filename=fileIn)
+    inputTab = []
+    while(True):
+            try:
+                value = inputFileStream.read(1).uint
+                inputTab.append(value)
+            except ReadError:  # Spodziewa się końca pliku
+                break
+    
+
 
     print("Rozpoczęcie testowania:")
 
@@ -49,11 +62,11 @@ def main():
             trns.beginTransmission()  # Rozpoczęcie transmisji
 
             file.write(str(i) + "/" + str(n) + " [Sent:" + str(trns.sent) + "] [Accepted: " + str(rcvr.accepted) +
-                       "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(rcvr.compare(trns.message))
+                       "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(rcvr.compare(inputTab))
                        + "/" + str(len(rcvr.finalTab)) + "]\n")
 
             print(i, "/", n, " [Sent:", trns.sent, "] [Accepted: ", rcvr.accepted, "] [Error rate: ",
-                  chnl.error_Rate, "] [Correct bits: ", rcvr.compare(trns.message), "/", len(rcvr.finalTab), "]")
+                  chnl.error_Rate, "] [Correct bits: ", rcvr.compare(inputTab), "/", len(rcvr.finalTab), "]")
 
             rcvr.saveToFile()  # zapisanie wynikow do pliku txt
 
