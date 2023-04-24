@@ -2,15 +2,15 @@ import transmitter
 import channel
 import receiver
 import  os
+import sys
 from bitstring import ConstBitStream
 from bitstring import ReadError
 
 
 # Rozmiar przesyłanych pakietów
-size = 20
-
+size = 200
+5
 # Ścieżka do pliku z przesyłanym sygnałem
-fileIn = 'input-files/input.txt'
 
 # Ścieżka do pliku z testami
 fileTest = 'output-files/test.txt'
@@ -39,6 +39,12 @@ def main():
     trns = transmitter.Transmitter(size)
     rcvr = receiver.Receiver()
     chnl = channel.Channel(trns, rcvr)
+
+    if len(sys.argv) < 2:
+        fileIn = 'input-files/input.txt'
+    else:
+        fileIn = sys.argv[1]
+
 
     file = open(fileTest, "a")
     inputFileStream = ConstBitStream(filename=fileIn)
