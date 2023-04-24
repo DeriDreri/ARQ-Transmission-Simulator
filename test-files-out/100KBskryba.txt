@@ -1,0 +1,10 @@
+1/1 [Sent:7997] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 708658/800000]
+
+1/1 [Sent:8020] [Accepted: 4001] [Error rate: 0.05] [Correct bits: 755165/800000]
+
+1/1 [Sent:8109] [Accepted: 4001] [Error rate: 0.15] [Correct bits: 684159/800000]
+
+1/1 [Sent:8004] [Accepted: 4001] [Error rate: 0.025] [Correct bits: 779897/800000]
+
+1/1 [Sent:6979] [Accepted: 4001] [Error rate: 0.005] [Correct bits: 796976/800000]
+

@@ -14,12 +14,12 @@ class Channel:
 
     @staticmethod
     def random():
-        seed = int(round(time.time() * 1000000000))
+        seed = int(round(time.time() * 1000000000000))
         a = 1103515245
         c = 12345
         m = 2 ** 31
         seed = (a * seed + c) % m
-        time.sleep(0.000001)
+        time.sleep(0.000000001)
         return seed / m
 
     # Odbieranie ciągu bitów z nadajnika, wysyłanie go do odbiornika

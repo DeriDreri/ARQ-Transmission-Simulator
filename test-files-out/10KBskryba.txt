@@ -1,0 +1,76 @@
+Rozpoczęcie testowania:
+1 / 5  [Sent: 824 ] [Accepted:  401 ] [Error rate:  0.1 ] [Correct bits:  72167 / 80000 ]
+2 / 5  [Sent: 797 ] [Accepted:  401 ] [Error rate:  0.1 ] [Correct bits:  72469 / 80000 ]
+3 / 5  [Sent: 789 ] [Accepted:  401 ] [Error rate:  0.1 ] [Correct bits:  72450 / 80000 ]
+4 / 5  [Sent: 752 ] [Accepted:  401 ] [Error rate:  0.1 ] [Correct bits:  71675 / 80000 ]
+5 / 5  [Sent: 825 ] [Accepted:  401 ] [Error rate:  0.1 ] [Correct bits:  72445 / 80000 ]
+
+
+1 / 5  [Sent: 859 ] [Accepted:  401 ] [Error rate:  0.05 ] [Correct bits:  75946 / 80000 ]
+2 / 5  [Sent: 800 ] [Accepted:  401 ] [Error rate:  0.05 ] [Correct bits:  75899 / 80000 ]
+3 / 5  [Sent: 789 ] [Accepted:  401 ] [Error rate:  0.05 ] [Correct bits:  75870 / 80000 ]
+4 / 5  [Sent: 787 ] [Accepted:  401 ] [Error rate:  0.05 ] [Correct bits:  75894 / 80000 ]
+5 / 5  [Sent: 800 ] [Accepted:  401 ] [Error rate:  0.05 ] [Correct bits:  75976 / 80000 ]
+
+
+1 / 5  [Sent: 807 ] [Accepted:  401 ] [Error rate:  0.15 ] [Correct bits:  68571 / 80000 ]
+2 / 5  [Sent: 805 ] [Accepted:  401 ] [Error rate:  0.15 ] [Correct bits:  68908 / 80000 ]
+3 / 5  [Sent: 821 ] [Accepted:  401 ] [Error rate:  0.15 ] [Correct bits:  69477 / 80000 ]
+4 / 5  [Sent: 805 ] [Accepted:  401 ] [Error rate:  0.15 ] [Correct bits:  68836 / 80000 ]
+5 / 5  [Sent: 760 ] [Accepted:  401 ] [Error rate:  0.15 ] [Correct bits:  68447 / 80000 ]
+
+
+1 / 5  [Sent: 814 ] [Accepted:  401 ] [Error rate:  0.025 ] [Correct bits:  78030 / 80000 ]
+2 / 5  [Sent: 787 ] [Accepted:  401 ] [Error rate:  0.025 ] [Correct bits:  78125 / 80000 ]
+3 / 5  [Sent: 795 ] [Accepted:  401 ] [Error rate:  0.025 ] [Correct bits:  77993 / 80000 ]
+4 / 5  [Sent: 796 ] [Accepted:  401 ] [Error rate:  0.025 ] [Correct bits:  77993 / 80000 ]
+5 / 5  [Sent: 821 ] [Accepted:  401 ] [Error rate:  0.025 ] [Correct bits:  78017 / 80000 ]
+
+
+1 / 5  [Sent: 721 ] [Accepted:  401 ] [Error rate:  0.005 ] [Correct bits:  79718 / 80000 ]
+2 / 5  [Sent: 735 ] [Accepted:  401 ] [Error rate:  0.005 ] [Correct bits:  79723 / 80000 ]
+3 / 5  [Sent: 692 ] [Accepted:  401 ] [Error rate:  0.005 ] [Correct bits:  79705 / 80000 ]
+4 / 5  [Sent: 707 ] [Accepted:  401 ] [Error rate:  0.005 ] [Correct bits:  79679 / 80000 ]
+1/5 [Sent:801] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71903/80000]
+2/5 [Sent:821] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71916/80000]
+3/5 [Sent:850] [Accepted: 401] [Error rate: 0.1] [Correct bits: 72334/80000]
+4/5 [Sent:768] [Accepted: 401] [Error rate: 0.1] [Correct bits: 72448/80000]
+5/5 [Sent:834] [Accepted: 401] [Error rate: 0.1] [Correct bits: 72411/80000]
+
+1/5 [Sent:807] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75962/80000]
+2/5 [Sent:778] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75869/80000]
+3/5 [Sent:793] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75837/80000]
+4/5 [Sent:774] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75801/80000]
+5/5 [Sent:781] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75825/80000]
+
+1/5 [Sent:773] [Accepted: 401] [Error rate: 0.15] [Correct bits: 68837/80000]
+1/5 [Sent:789] [Accepted: 401] [Error rate: 0.1] [Correct bits: 69986/80000]
+2/5 [Sent:806] [Accepted: 401] [Error rate: 0.1] [Correct bits: 70392/80000]
+3/5 [Sent:753] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71510/80000]
+4/5 [Sent:788] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71344/80000]
+5/5 [Sent:767] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71222/80000]
+
+1/5 [Sent:802] [Accepted: 401] [Error rate: 0.05] [Correct bits: 76046/80000]
+2/5 [Sent:774] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75923/80000]
+3/5 [Sent:802] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75803/80000]
+4/5 [Sent:784] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75708/80000]
+5/5 [Sent:786] [Accepted: 401] [Error rate: 0.05] [Correct bits: 75833/80000]
+
+1/5 [Sent:791] [Accepted: 401] [Error rate: 0.15] [Correct bits: 67268/80000]
+2/5 [Sent:868] [Accepted: 401] [Error rate: 0.15] [Correct bits: 67655/80000]
+3/5 [Sent:806] [Accepted: 401] [Error rate: 0.15] [Correct bits: 66991/80000]
+4/5 [Sent:820] [Accepted: 401] [Error rate: 0.15] [Correct bits: 68459/80000]
+5/5 [Sent:762] [Accepted: 401] [Error rate: 0.15] [Correct bits: 67757/80000]
+
+1/5 [Sent:795] [Accepted: 401] [Error rate: 0.025] [Correct bits: 77963/80000]
+2/5 [Sent:817] [Accepted: 401] [Error rate: 0.025] [Correct bits: 77948/80000]
+3/5 [Sent:785] [Accepted: 401] [Error rate: 0.025] [Correct bits: 77991/80000]
+4/5 [Sent:823] [Accepted: 401] [Error rate: 0.025] [Correct bits: 77978/80000]
+5/5 [Sent:792] [Accepted: 401] [Error rate: 0.025] [Correct bits: 77984/80000]
+
+1/5 [Sent:685] [Accepted: 401] [Error rate: 0.005] [Correct bits: 79681/80000]
+2/5 [Sent:727] [Accepted: 401] [Error rate: 0.005] [Correct bits: 79703/80000]
+3/5 [Sent:707] [Accepted: 401] [Error rate: 0.005] [Correct bits: 79692/80000]
+4/5 [Sent:659] [Accepted: 401] [Error rate: 0.005] [Correct bits: 79671/80000]
+5/5 [Sent:672] [Accepted: 401] [Error rate: 0.005] [Correct bits: 79684/80000]
+

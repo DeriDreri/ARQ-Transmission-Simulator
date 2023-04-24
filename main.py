@@ -16,7 +16,7 @@ size = 200
 fileTest = 'output-files/test.txt'
 
 # Ilość pomiarów
-n = 5
+n = 1
 
 # Prawdopodobieństwo wystąpienia błędu
 error_rate = {0.005, 0.025, 0.050, 0.100, 0.150}
@@ -44,6 +44,8 @@ def main():
         fileIn = 'input-files/input.txt'
     else:
         fileIn = sys.argv[1]
+        if len(sys.argv) > 2:
+            fileTest = sys.argv[2]
 
 
     file = open(fileTest, "a")
@@ -67,14 +69,15 @@ def main():
             trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
             trns.beginTransmission()  # Rozpoczęcie transmisji
 
+            compared = rcvr.compare(inputTab)
             file.write(str(i) + "/" + str(n) + " [Sent:" + str(trns.sent) + "] [Accepted: " + str(rcvr.accepted) +
-                       "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(rcvr.compare(inputTab))
+                       "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(compared)
                        + "/" + str(len(rcvr.finalTab)) + "]\n")
 
             print(i, "/", n, " [Sent:", trns.sent, "] [Accepted: ", rcvr.accepted, "] [Error rate: ",
-                  chnl.error_Rate, "] [Correct bits: ", rcvr.compare(inputTab), "/", len(rcvr.finalTab), "]")
+                  chnl.error_Rate, "] [Correct bits: ", str(compared), "/", len(rcvr.finalTab), "]")
 
-            rcvr.saveToFile()  # zapisanie wynikow do pliku txt
+            #rcvr.saveToFile()  # zapisanie wynikow do pliku txt
 
             trns.clear()
             rcvr.clear()
