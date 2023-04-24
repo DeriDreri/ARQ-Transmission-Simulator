@@ -1,5 +1,0 @@
-1/5 [Sent:833] [Accepted: 401] [Error rate: 0.1] [Correct bits: <function compare at 0x7f248c3e7e20>/80000]
-2/5 [Sent:820] [Accepted: 401] [Error rate: 0.1] [Correct bits: <function compare at 0x7f248c3e7e20>/80000]
-1/5 [Sent:805] [Accepted: 401] [Error rate: 0.1] [Correct bits: 69884/80000]
-2/5 [Sent:806] [Accepted: 401] [Error rate: 0.1] [Correct bits: 70703/80000]
-3/5 [Sent:790] [Accepted: 401] [Error rate: 0.1] [Correct bits: 71764/80000]
