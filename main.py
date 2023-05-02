@@ -5,6 +5,7 @@ import  os
 import sys
 from bitstring import ConstBitStream
 from bitstring import ReadError
+import numpy
 
 
 # Rozmiar przesyłanych pakietów
@@ -14,7 +15,6 @@ size = 200
 
 # Ścieżka do pliku z testami
 fileTest = 'output-files/test.txt'
-
 # Ilość pomiarów
 n = 1
 
@@ -48,13 +48,13 @@ def main():
             fileTest = sys.argv[2]
 
 
-    file = open(fileTest, "a")
+    file = open('output-files/test.txt', "a")
     inputFileStream = ConstBitStream(filename=fileIn)
-    inputTab = []
+    inputTab = numpy.empty(0)
     while(True):
             try:
                 value = inputFileStream.read(1).uint
-                inputTab.append(value)
+                inputTab = numpy.append(inputTab, value)
             except ReadError:  # Spodziewa się końca pliku
                 break
     
@@ -69,7 +69,7 @@ def main():
             trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
             trns.beginTransmission()  # Rozpoczęcie transmisji
 
-            compared = rcvr.compare(inputTab)
+            compared = len(rcvr.finalTab - rcvr.compare(inputTab))
             file.write(str(i) + "/" + str(n) + " [Sent:" + str(trns.sent) + "] [Accepted: " + str(rcvr.accepted) +
                        "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(compared)
                        + "/" + str(len(rcvr.finalTab)) + "]\n")
@@ -77,7 +77,7 @@ def main():
             print(i, "/", n, " [Sent:", trns.sent, "] [Accepted: ", rcvr.accepted, "] [Error rate: ",
                   chnl.error_Rate, "] [Correct bits: ", str(compared), "/", len(rcvr.finalTab), "]")
 
-            #rcvr.saveToFile()  # zapisanie wynikow do pliku txt
+            rcvr.saveToFile()  # zapisanie wynikow do pliku txt
 
             trns.clear()
             rcvr.clear()

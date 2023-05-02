@@ -1,0 +1,31 @@
+Testing
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.1] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.05] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.15] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.025] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.005] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.1] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.05] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.15] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.025] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.005] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.1] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.05] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.15] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.025] [Correct bits: 7792/7792]
+
+1/1 [Sent:39] [Accepted: 39] [Error rate: 0.005] [Correct bits: 7792/7792]
+

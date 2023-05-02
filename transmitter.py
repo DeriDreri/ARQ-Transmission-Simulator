@@ -1,5 +1,6 @@
 from bitstring import ConstBitStream
 from bitstring import ReadError
+import numpy
 
 
 class Transmitter:
@@ -7,8 +8,8 @@ class Transmitter:
     # Konstruktor definiuje długość pakietów, nadmiarowość oraz liczbę wysłanych pakietów
     def __init__(self, packetLength):
         self.packetLength = packetLength
-        self.tabOfBits = []
-        self.message = []
+        self.tabOfBits = numpy.empty(0)
+#        self.message = numpy.empty()
         self.sent = 0
 
     # Łaczy z plikiem odczytywanym
@@ -33,11 +34,11 @@ class Transmitter:
             # Ładuje nową porcję bitów do tablicy
 
     def loadBites(self):
-        self.tabOfBits = []  # Czyści tablicę z poprzednich bitów
+        self.tabOfBits = numpy.empty(0)  # Czyści tablicę z poprzednich bitów
         for i in range(0, self.packetLength):
             try:
                 value = self.bitsStream.read(1).uint
-                self.tabOfBits.insert(i, value)
+                self.tabOfBits = numpy.append(self.tabOfBits, value)
             except ReadError:  # Spodziewa się końca pliku
                 self.reachedEndOfFile = True
                 return
@@ -62,20 +63,22 @@ class Transmitter:
 
     # Funkcja wzywana wewnętrznie aby zakodować bit parzystości
     def codePacket(self):
-        EvenOnes = True
-        for i in self.tabOfBits:
-            if i == 1:
-                EvenOnes = not EvenOnes
 
-        if (EvenOnes):
-            self.tabOfBits.insert(len(self.tabOfBits), 0)
+        onesAmount = numpy.count_nonzero(self.tabOfBits == 1)
+
+        #for i in self.tabOfBits:
+        #    if i == 1:
+        #        EvenOnes = not EvenOnes
+
+        if (onesAmount % 2 == 0):
+            self.tabOfBits = numpy.append(self.tabOfBits, 0)
         else:
-            self.tabOfBits.insert(len(self.tabOfBits), 1)
+            self.tabOfBits = numpy.append(self.tabOfBits, 1)
 
-        self.message = self.message + self.tabOfBits
+      #  numpy.append(self.message, self.tabOfBits)
 
     # Zerowanie ilości wysłanych pakietów po zakończonej transmisji
     def clear(self):
         self.sent = 0
-        self.tabOfBits = []
-        self.message = []
+        self.tabOfBits = numpy.empty(0)
+#        self.message = []
