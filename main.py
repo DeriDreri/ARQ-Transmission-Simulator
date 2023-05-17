@@ -6,7 +6,7 @@ import sys
 from bitstring import ConstBitStream
 from bitstring import ReadError
 import numpy
-
+import time
 
 # Rozmiar przesyłanych pakietów
 size = 200
@@ -15,6 +15,7 @@ size = 200
 
 # Ścieżka do pliku z testami
 fileTest = 'output-files/test.txt'
+fileOut = 'output-files/output.txt'
 # Ilość pomiarów
 n = 1
 
@@ -37,39 +38,42 @@ def compare(input_message, output_message):
 def main():
     # Stworzenie nadajnika, odbiornika, kanału
     trns = transmitter.Transmitter(size)
-    rcvr = receiver.Receiver()
-    chnl = channel.Channel(trns, rcvr)
 
     if len(sys.argv) < 2:
         fileIn = 'input-files/input.txt'
     else:
         fileIn = sys.argv[1]
         if len(sys.argv) > 2:
-            fileTest = sys.argv[2]
+            fileOut = sys.argv[2]
 
-
+    rcvr = receiver.Receiver(fileOut)
+    chnl = channel.Channel(trns, rcvr)
+    
     file = open('output-files/test.txt', "a")
+    
+    start = time.time()
     inputFileStream = ConstBitStream(filename=fileIn)
-    inputTab = numpy.empty(0)
+    inputTab = []
     while(True):
             try:
-                value = inputFileStream.read(1).uint
-                inputTab = numpy.append(inputTab, value)
+                value = inputFileStream.read('uint:1')
+                inputTab.append(value)
             except ReadError:  # Spodziewa się końca pliku
                 break
-    
-
-
+    inputTab = numpy.array(inputTab)
+    end = time.time()
+    print("Czas ładowania początkowej tablicy: ", end - start)
     print("Rozpoczęcie testowania:")
 
-    for i in error_rate:
-        chnl.set_error_rate(i)
+    for error in error_rate:
+        chnl.set_error_rate(error)
 
         for i in range(1, n + 1):
+            start = time.time()
             trns.connectToInputFile(fileIn)  # Wczytanie pliku .txt do nadajnika
             trns.beginTransmission()  # Rozpoczęcie transmisji
 
-            compared = len(rcvr.finalTab - rcvr.compare(inputTab))
+            compared = len(rcvr.finalTab) - rcvr.compare(inputTab)
             file.write(str(i) + "/" + str(n) + " [Sent:" + str(trns.sent) + "] [Accepted: " + str(rcvr.accepted) +
                        "] [Error rate: " + str(chnl.error_Rate) + "] [Correct bits: " + str(compared)
                        + "/" + str(len(rcvr.finalTab)) + "]\n")
@@ -81,7 +85,9 @@ def main():
 
             trns.clear()
             rcvr.clear()
+            end = time.time()
 
+            print("Czas całej transmisji: ", end - start)
         print("\n")
         file.write("\n")
 

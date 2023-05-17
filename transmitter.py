@@ -1,6 +1,7 @@
 from bitstring import ConstBitStream
 from bitstring import ReadError
 import numpy
+import time
 
 
 class Transmitter:
@@ -8,7 +9,7 @@ class Transmitter:
     # Konstruktor definiuje długość pakietów, nadmiarowość oraz liczbę wysłanych pakietów
     def __init__(self, packetLength):
         self.packetLength = packetLength
-        self.tabOfBits = numpy.empty(0)
+        self.tabOfBits = []
 #        self.message = numpy.empty()
         self.sent = 0
 
@@ -34,22 +35,28 @@ class Transmitter:
             # Ładuje nową porcję bitów do tablicy
 
     def loadBites(self):
-        self.tabOfBits = numpy.empty(0)  # Czyści tablicę z poprzednich bitów
+        #start = time.time()
+        self.tabOfBits = []  # Czyści tablicę z poprzednich bitów
         for i in range(0, self.packetLength):
             try:
-                value = self.bitsStream.read(1).uint
-                self.tabOfBits = numpy.append(self.tabOfBits, value)
+                value = self.bitsStream.read('uint:1')
+                self.tabOfBits.append(value)
             except ReadError:  # Spodziewa się końca pliku
                 self.reachedEndOfFile = True
                 return
+        end = time.time()
+        #print("Czas ładowania w nadajniku: ", end-start)
 
     # Funkcja wysyłająca bity
     def send(self, correctTransmission):
+        
         while not self.reachedEndOfFile or not correctTransmission:
-
+            #start = time.time()
             if correctTransmission:
                 self.loadBites()
                 self.codePacket()
+            #end = time.time()
+            #print("Czas w nadajniku: ", end - start )
 
             if self.transmissionChannel.receive(self.tabOfBits):
                 correctTransmission = True
@@ -58,12 +65,14 @@ class Transmitter:
 
             self.sent = self.sent + 1
 
+
     def beginTransmission(self):
         self.send(True)
 
     # Funkcja wzywana wewnętrznie aby zakodować bit parzystości
     def codePacket(self):
-
+        #start = time.time()
+        self.tabOfBits = numpy.array(self.tabOfBits)
         onesAmount = numpy.count_nonzero(self.tabOfBits == 1)
 
         #for i in self.tabOfBits:
@@ -74,11 +83,12 @@ class Transmitter:
             self.tabOfBits = numpy.append(self.tabOfBits, 0)
         else:
             self.tabOfBits = numpy.append(self.tabOfBits, 1)
-
+        #end = time.time()
+        #print("Czas kodowania w nadajniku: ", end - start)
       #  numpy.append(self.message, self.tabOfBits)
 
     # Zerowanie ilości wysłanych pakietów po zakończonej transmisji
     def clear(self):
         self.sent = 0
-        self.tabOfBits = numpy.empty(0)
+        self.tabOfBits = []
 #        self.message = []

@@ -1,14 +1,15 @@
 from bitstring import ConstBitStream
 import numpy
+import time
 
 
 class Receiver:
 
     # Konstruktor klasy
-    def __init__(self):
-        self.tabOfBits = numpy.empty(0)
-        self.finalTab = numpy.empty(0)
-        self.fileName = 'output-files/output.txt'
+    def __init__(self, filename):
+        self.tabOfBits = []
+        self.finalTab = []
+        self.fileName = filename
         self.accepted = 0
 
     # Dodawanie kanału do odbiornika
@@ -17,18 +18,25 @@ class Receiver:
 
     # Odbieranie ciągu bitów z kanału
     def receive(self, bitsStream):
+        start = time.time()
         self.tabOfBits = bitsStream
         if self.checkBits():  # Sprawdzanie parzystości bitów
             # for i in range (0,len(self.tabOfBits)-1):       # wpisuje zawartosc pakietu to jednej duzej listy na
             # podstawie ktorej odtworzy sie wiadomosc self.finalTab.append(self.tabOfBits[i])
-            self.tabOfBits = numpy.delete(self.tabOfBits, -1)
-            self.finalTab = numpy.append(self.finalTab, self.tabOfBits)
+            bitsStream = bitsStream.tolist()   
+            bitsStream.pop()
+            self.finalTab = self.finalTab + bitsStream
             self.accepted = self.accepted + 1
+            end = time.time()
+            #print("Czas w odbiorniku: ", end-start)
             return True
+        end = time.time()
+        #print("Czas w odbiorniku: ", end-start)
         return False
 
     # Sprawdzanie parzystości ciągu bitów
     def checkBits(self):
+        start = time.time()
         #evenOnes = True
 
         onesCount = numpy.count_nonzero(self.tabOfBits == 1)
@@ -36,7 +44,8 @@ class Receiver:
         #for i in self.tabOfBits:
         #    if i == 1:
         #        evenOnes = not evenOnes
-
+        end = time.time()
+        #print("Czas dekodowania: ", end - start)
         return (onesCount % 2 == 0)
 
     def setNewOutput(self, fileName):
@@ -53,15 +62,17 @@ class Receiver:
 
     # Porównywanie input z output
     def compare(self, input_message):
-        counter = 0 # Zliczanie ilosci takich samych bitow
-
-        numpy.add(self.finalTab, input_message)
-        antiCounter = numpy.count_nonzero(self.finalTab == 1)
+        #start = time.time()
+        checkFinal = numpy.array(self.finalTab)
+        input_message = numpy.add(checkFinal, input_message)
+        antiCounter = numpy.count_nonzero(input_message == 1)
+        #end = time.time()
+        #print("Czas porównywania: ", end - start)
         #for i in range(0, len(self.finalTab)):
         #    if self.finalTab[i] == input_message[i]:
         #        counter = counter + 1
 
-        return counter
+        return antiCounter
 
     # Zerowanie ilości zaakceptowanych pakietów po zakończonej transmisji
     def clear(self):

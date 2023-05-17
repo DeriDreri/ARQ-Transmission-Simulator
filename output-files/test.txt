@@ -29,3 +29,34 @@ Testing
 
 1/1 [Sent:39] [Accepted: 39] [Error rate: 0.005] [Correct bits: 7792/7792]
 
+1/1 [Sent:8083] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 800000/800000]
+
+1/1 [Sent:8180] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 684397/800000]
+
+1/1 [Sent:8025] [Accepted: 4001] [Error rate: 0.05] [Correct bits: 753099/800000]
+
+1/1 [Sent:8029] [Accepted: 4001] [Error rate: 0.15] [Correct bits: 652222/800000]
+
+1/1 [Sent:7929] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 739170/800000]
+1/1 [Sent:8020] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 704923/800000]
+
+1/1 [Sent:4001] [Accepted: 4001] [Error rate: 0] [Correct bits: 800000/800000]
+
+1/1 [Sent:8039] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 796048/800000]
+
+1/1 [Sent:8112] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 796032/800000]
+
+1/1 [Sent:7805] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 795938/800000]
+
+1/1 [Sent:7928] [Accepted: 4001] [Error rate: 0.05] [Correct bits: 796072/800000]
+
+1/1 [Sent:7986] [Accepted: 4001] [Error rate: 0.15] [Correct bits: 796152/800000]
+
+1/1 [Sent:7908] [Accepted: 4001] [Error rate: 0.025] [Correct bits: 796044/800000]
+
+1/1 [Sent:8032] [Accepted: 4001] [Error rate: 0.005] [Correct bits: 797550/800000]
+
+1/1 [Sent:8058] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 796030/800000]
+
+1/1 [Sent:7889] [Accepted: 4001] [Error rate: 0.1] [Correct bits: 795840/800000]
+
